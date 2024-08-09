@@ -88,6 +88,7 @@ main:
 	mov si, msg_hello
 	call puts
 
+	cli						; disable interrupts, to not get out of this state
 	hlt
 
 floppy_error:
@@ -192,11 +193,11 @@ disk_read:
 	
 
 	;restore modified registers
-	push di
-	push dx
-	push cx
-	push bx
-	push ax
+	pop di
+	pop dx
+	pop cx
+	pop bx
+	pop ax
 	ret
 
 ;
